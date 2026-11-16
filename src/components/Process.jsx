@@ -9,7 +9,7 @@ export default function Process() {
   const line = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
 
   return (
-    <section id="process" className="section process">
+    <section id="process" className="section process is-paper">
       <SectionHead no="05" title="HOW WE WORK" sub="프로젝트 범위와 진행 과정은 상담 후 조정됩니다." />
       <div className="process__timeline" ref={ref}>
         <div className="process__rail">

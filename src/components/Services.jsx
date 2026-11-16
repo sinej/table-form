@@ -3,11 +3,11 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { SERVICES } from '../data.js'
 import { Reveal, SectionHead, ease } from './Reveal.jsx'
 
-// 아코디언 행: 호버 시 민트 배경이 차오르고, 클릭하면 세부 항목이 펼쳐집니다.
+// 아코디언 행: 호버 시 테라코타 배경이 차오르고, 클릭하면 세부 항목이 펼쳐집니다.
 export default function Services() {
   const [open, setOpen] = useState(0)
   return (
-    <section id="services" className="section services">
+    <section id="services" className="section services is-paper">
       <SectionHead no="02" title="WHAT WE DO" sub="외식업에 필요한 핵심 영역을 함께 준비합니다." />
       <div className="services__list">
         {SERVICES.map((s, i) => {

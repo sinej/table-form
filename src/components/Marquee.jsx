@@ -10,7 +10,7 @@ import {
   wrap,
 } from 'framer-motion'
 
-const WORDS = ['F&B CONSULTING', 'BRANDING', 'DIGITAL', 'MENU', 'COST', 'KITCHEN', 'IDENTITY', 'WEB']
+const WORDS = ['메뉴 개발', 'RECIPE', '원가 설계', 'KITCHEN', '브랜딩', 'MENU BOARD', '홈페이지', 'OPENING']
 
 // 스크롤 속도에 따라 빨라지고 방향이 바뀌는 마키
 export default function Marquee() {

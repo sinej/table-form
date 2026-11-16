@@ -12,12 +12,13 @@ export default function Hero({ ready }) {
   const my = useMotionValue(40)
   const smx = useSpring(mx, { stiffness: 80, damping: 20 })
   const smy = useSpring(my, { stiffness: 80, damping: 20 })
-  const glow = useMotionTemplate`radial-gradient(600px circle at ${smx}% ${smy}%, rgba(143,227,172,0.16), transparent 60%)`
+  const glow = useMotionTemplate`radial-gradient(600px circle at ${smx}% ${smy}%, rgba(var(--accent-rgb), 0.18), transparent 60%)`
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const titleY = useTransform(scrollYProgress, [0, 1], ['0%', '35%'])
   const titleScale = useTransform(scrollYProgress, [0, 1], [1, 0.9])
   const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0])
+  const plateRotate = useTransform(scrollYProgress, [0, 1], [0, 120])
 
   const onMove = (e) => {
     const r = ref.current.getBoundingClientRect()
@@ -49,6 +50,17 @@ export default function Hero({ ready }) {
         <motion.span initial={{ opacity: 0, y: 12 }} animate={ready ? { opacity: 1, y: 0 } : {}} transition={{ delay: 1.1, duration: 0.8, ease }}>
           {REGIONS}
         </motion.span>
+      </motion.div>
+
+      <motion.div
+        className="plate"
+        aria-hidden="true"
+        style={{ opacity: fade, rotate: plateRotate }}
+        initial={{ scale: 0.6, opacity: 0 }}
+        animate={ready ? { scale: 1, opacity: 1 } : {}}
+        transition={{ delay: 0.7, duration: 1.2, ease }}
+      >
+        <Plate />
       </motion.div>
 
       <motion.h1 className="hero__title" style={{ y: titleY, scale: titleScale }} aria-label="TABLE:FORM">
@@ -101,5 +113,27 @@ export default function Hero({ ready }) {
         </motion.button>
       </motion.div>
     </section>
+  )
+}
+
+// 접시 위 포크·나이프, 테두리를 따라 도는 서비스 키워드
+function Plate() {
+  return (
+    <svg viewBox="0 0 200 200" fill="none">
+      <defs>
+        <path id="plate-ring" d="M100,100 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0" />
+      </defs>
+      <g className="plate__ring">
+        <text className="plate__text">
+          <textPath href="#plate-ring">MENU · RECIPE · COST · KITCHEN · BRAND · DIGITAL ·</textPath>
+        </text>
+      </g>
+      <circle cx="100" cy="100" r="70" stroke="currentColor" strokeWidth="1" />
+      <circle cx="100" cy="100" r="52" stroke="currentColor" strokeOpacity="0.45" strokeWidth="1" />
+      <g stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+        <path d="M86 72v18m-5-18v12a5 5 0 0 0 10 0V72M86 94v34" />
+        <path d="M114 128V72c-6 4-8 14-8 24h8" />
+      </g>
+    </svg>
   )
 }

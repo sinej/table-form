@@ -33,7 +33,7 @@ function DirectorCard({ role, stats, desc, tags }) {
   const ry = useSpring(0, { stiffness: 150, damping: 18 })
   const gx = useMotionValue(50)
   const gy = useMotionValue(50)
-  const bg = useMotionTemplate`radial-gradient(420px circle at ${gx}% ${gy}%, rgba(143,227,172,0.18), transparent 55%)`
+  const bg = useMotionTemplate`radial-gradient(420px circle at ${gx}% ${gy}%, rgba(var(--accent-rgb), 0.16), transparent 55%)`
 
   const onMove = (e) => {
     const r = e.currentTarget.getBoundingClientRect()
