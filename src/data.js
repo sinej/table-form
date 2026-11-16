@@ -191,13 +191,13 @@ export const WORKS = [
 export const photo = (id, w = 1600) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`
 
 export const HERO_SLIDES = [
-  { id: '1765646772493-7b5341714eea', cat: '공간 콘셉트', title: '조명 한 줄까지 설계하는 매장' },
-  { id: '1785413306000-4a6566aed0fb', cat: '메뉴 개발', title: '한 접시의 기준을 만드는 레시피' },
-  { id: '1700367059983-ee8a28689971', cat: '주방 운영', title: '카운터 뒤의 동선과 시스템' },
-  { id: '1711991022613-63df8929f311', cat: '원가 설계', title: '그램 단위로 맞추는 원가와 판매가' },
+  { id: '1766832255363-c9f060ade8b0', cat: '공간 콘셉트', title: '조명 한 줄까지 설계하는 매장' },
+  { id: '1663530761401-15eefb544889', cat: '메뉴 개발', title: '한 접시의 기준을 만드는 레시피' },
+  { id: '1581349485608-9469926a8e5e', cat: '주방 운영', title: '패스 앞의 동선과 시스템' },
+  { id: '1504973960431-1c467e159aa4', cat: '원가 설계', title: '그램 단위로 맞추는 원가와 판매가' },
 ]
 
-export const SERVICE_PHOTOS = ['1775513153018-0c7ac7899751', '1621871908119-295c8ce5cee4', '1636406261401-a64dfa3045bf']
+export const SERVICE_PHOTOS = ['1775513153018-0c7ac7899751', '1574966739987-65e38db0f7ce', '1636406261401-a64dfa3045bf']
 
 export const STORY_PHOTO = '1755811248299-7a6867dc163d'
 
