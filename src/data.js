@@ -191,7 +191,7 @@ export const WORKS = [
 export const photo = (id, w = 1600) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`
 
 export const HERO_SLIDES = [
-  { id: '1766832255363-c9f060ade8b0', cat: '공간 콘셉트', title: '조명 한 줄까지 설계하는 매장' },
+  { id: '1765360773028-6affda725695', cat: '공간 콘셉트', title: '조명 한 줄까지 설계하는 매장' },
   { id: '1663530761401-15eefb544889', cat: '메뉴 개발', title: '한 접시의 기준을 만드는 레시피' },
   { id: '1581349485608-9469926a8e5e', cat: '주방 운영', title: '패스 앞의 동선과 시스템' },
   { id: '1504973960431-1c467e159aa4', cat: '원가 설계', title: '그램 단위로 맞추는 원가와 판매가' },
