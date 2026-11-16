@@ -228,11 +228,47 @@ img {
 
 .nav__logo {
   justify-self: start;
-  font-family: var(--font-en);
-  font-stretch: 112%;
-  font-size: 19px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+}
+
+/* BI 로고 — 모노그램 + 넓은 자간 워드마크 */
+.wordmark {
+  font-family: var(--font);
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  white-space: nowrap;
+}
+
+.wordmark__colon {
+  display: inline-block;
+  transform: translateY(-0.06em);
+}
+
+.logo-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-inline .wordmark {
+  font-size: 15px;
+}
+
+.logo-stacked {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.logo-stacked .wordmark {
+  font-size: 22px;
+}
+
+.logo-stacked small {
+  margin-top: -8px;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--muted);
 }
 
 .nav__links {
@@ -366,10 +402,8 @@ img {
 }
 
 .hero__eyebrow {
-  font-family: var(--font-en);
-  font-stretch: 125%;
-  font-size: 12px;
-  letter-spacing: 0.14em;
+  font-size: 13px;
+  letter-spacing: 0.32em;
   margin-bottom: 14px;
   opacity: 0.85;
 }
@@ -1413,12 +1447,9 @@ img {
 }
 
 .footer__motto {
-  font-family: var(--font-en);
-  font-stretch: 125%;
-  font-size: clamp(26px, 2.6vw, 36px);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: 0.02em;
+  margin-top: var(--s-4);
+  font-size: 15px;
+  letter-spacing: 0.3em;
 }
 
 .footer__follow {

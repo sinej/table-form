@@ -3,19 +3,15 @@ import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { COMPANY, INSTAGRAM, REGIONS } from '../data.js'
 import { InstagramIcon } from './Icons.jsx'
+import { LogoStacked } from './Logo.jsx'
 
 export default function Footer() {
   return (
     <footer className="footer theme-dark">
       <div className="footer__inner">
         <div className="footer__brand">
-          <p className="footer__motto">
-            FROM
-            <br />
-            PLATE TO
-            <br />
-            PLACE
-          </p>
+          <LogoStacked />
+          <p className="footer__motto">WE DESIGN F&B.</p>
           <a href={INSTAGRAM.url} target="_blank" rel="noreferrer" className="footer__follow">
             FOLLOW US <InstagramIcon size={16} />
           </a>

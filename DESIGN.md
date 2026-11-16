@@ -25,6 +25,7 @@
 ## 요소
 - 버튼: 알약형(`.pill`) — `pill--dark`(검정), `pill--line`(테두리), `pill--lg`
 - 사진·카드: 모서리 각지게(radius 0)
+- 로고: `src/components/Logo.jsx` — TF 모노그램(SVG) + 넓은 자간 워드마크. 슬로건 "WE DESIGN F&B."
 - 헤더: 맨 위에서 투명, 스크롤 0~160px 동안 흰 배경이 서서히 나타남. 홈 히어로 위에서는 흰 글자.
 
 ## 페이지

@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence, useMotionValueEvent, useScroll, useTransform } from 'framer-motion'
 import { INSTAGRAM } from '../data.js'
 import { InstagramIcon } from './Icons.jsx'
+import { LogoInline } from './Logo.jsx'
 
 const LINKS = [
   ['/service', '서비스 소개'],
@@ -28,8 +29,8 @@ export default function Nav() {
     <>
       <header className={`nav ${onPhoto ? 'is-on-photo' : ''}`}>
         <motion.div className="nav__bg" style={{ opacity: open ? 1 : bgOpacity }} aria-hidden="true" />
-        <Link className="nav__logo" to="/" onClick={close}>
-          TABLE:FORM
+        <Link className="nav__logo" to="/" onClick={close} aria-label="TABLE:FORM 홈">
+          <LogoInline />
         </Link>
         <nav className="nav__links">
           {LINKS.map(([to, label]) => (
