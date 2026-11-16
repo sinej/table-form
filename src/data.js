@@ -17,6 +17,7 @@ export const WORRIES = [
 export const SERVICES = [
   {
     no: '01',
+    kr: '메뉴와 주방',
     title: 'F&B CONSULTING',
     lead: '실제로 운영할 수 있는 식당을 설계합니다.',
     items: [
@@ -30,6 +31,7 @@ export const SERVICES = [
   },
   {
     no: '02',
+    kr: '브랜드와 디자인',
     title: 'BRANDING & DESIGN',
     lead: '고객에게 기억되는 브랜드를 만듭니다.',
     items: [
@@ -42,6 +44,7 @@ export const SERVICES = [
   },
   {
     no: '03',
+    kr: '디지털과 고객 경험',
     title: 'DIGITAL SOLUTION',
     lead: '오픈 이후의 고객 경험까지 연결합니다.',
     items: [
@@ -72,70 +75,154 @@ export const DIRECTORS = [
   },
 ]
 
-export const PACKAGES = [
+// 진행 6단계. 기간은 메뉴·브랜드·홈페이지 전체 진행 기준 예시이며 범위에 따라 조정됩니다.
+export const STEPS = [
   {
-    tag: '01 / ENTRY',
-    name: 'F&B 창업 진단',
-    price: 39,
-    launch: 29,
-    period: '상담 1회 + 분석 보고서 / 약 5~7일',
-    items: ['창업 아이템·콘셉트 및 메뉴 구성 검토', '예상 원가·손익구조 / 경쟁 매장 조사', '창업 준비 우선순위 보고서'],
+    no: '01',
+    en: 'DIAGNOSIS',
+    title: '진단',
+    course: '첫 번째 코스',
+    period: '1주',
+    desc: '창업 상황·예산·일정을 듣고 콘셉트, 상권, 메뉴 방향의 가능성을 검토합니다.',
+    deliverables: ['상담 기록', '창업 진단 리포트'],
   },
   {
-    tag: '02 / BRANDING',
-    name: '브랜드 스타터',
-    price: 179,
-    launch: 149,
-    period: '약 2~3주',
-    items: ['브랜드 콘셉트 및 네이밍 방향', '로고·BI / 컬러·서체 / 메뉴판 디자인', 'SNS 기본 템플릿 / 간단한 브랜드 가이드'],
+    no: '02',
+    en: 'PROPOSAL',
+    title: '제안 · 계약',
+    course: '두 번째 코스',
+    period: '3~5일',
+    desc: '작업 범위, 결과물, 일정, 수정 조건을 문서로 확정한 뒤 시작합니다.',
+    deliverables: ['프로젝트 제안서', '일정표', '계약서'],
   },
   {
-    tag: '03 / MAIN PRODUCT',
-    name: 'RESTAURANT ALL-IN-ONE',
-    price: 449,
-    launch: 349,
-    period: '약 4~6주',
-    featured: true,
-    items: [
-      '브랜드 콘셉트 기획 및 BI',
-      '메뉴 8~12종 개발 및 레시피 표준화',
-      '원가 분석 및 판매가격 설계',
-      '주방 운영·동선 자문',
-      '메뉴판 디자인 및 반응형 소개 홈페이지',
-      '네이버 플레이스 등록 지원 / 오픈 체크리스트',
-    ],
+    no: '03',
+    en: 'DESIGN',
+    title: '설계',
+    course: '세 번째 코스',
+    period: '1~2주',
+    desc: '브랜드 콘셉트와 메뉴 구성, 원가 구조, 주방 동선을 하나의 방향으로 설계합니다.',
+    deliverables: ['콘셉트 보드', '메뉴 구성안', '원가·판매가 설계표', '주방 동선안'],
   },
   {
-    tag: '04 / PREMIUM',
-    name: 'FULL BRAND LAUNCH',
-    price: 699,
-    launch: 549,
-    from: true,
-    period: '약 6~10주',
-    items: [
-      '올인원 패키지 전체 포함',
-      '메뉴 15종 이상 개발 범위 협의',
-      '현장 조리 테스트 / 직원 교육',
-      '상세 운영 매뉴얼 / 오픈 마케팅 기획',
-      '예약·고객관리 시스템 협의 / 오픈 현장 지원',
-    ],
+    no: '04',
+    en: 'CRAFT',
+    title: '개발 · 제작',
+    course: '네 번째 코스',
+    period: '2~3주',
+    desc: '레시피를 개발·테스트해 표준화하고 로고, 메뉴판, 홈페이지를 제작합니다. 중간 검토와 약정된 수정을 포함합니다.',
+    deliverables: ['레시피 표준서', 'BI · 로고', '메뉴판', '홈페이지'],
   },
   {
-    tag: '05 / RETAINER',
-    name: 'MONTHLY PARTNER',
-    price: 69,
-    monthly: true,
-    from: true,
-    period: '월 단위 계약 / 최소 기간 별도 협의',
-    items: ['월간 메뉴 개선 자문 / 원가·가격 점검', '브랜드 디자인 유지보수 / SNS 콘텐츠 기획', '운영 관련 정기 미팅'],
+    no: '05',
+    en: 'OPENING',
+    title: '오픈 준비',
+    course: '다섯 번째 코스',
+    period: '1주',
+    desc: '운영 매뉴얼과 오픈 체크리스트를 전달하고 최종 파일 납품과 사용 안내를 진행합니다.',
+    deliverables: ['운영 매뉴얼', '오픈 체크리스트', '최종 파일 일체'],
+  },
+  {
+    no: '06',
+    en: 'AFTERCARE',
+    title: '사후 지원',
+    course: '디저트',
+    period: '계약 범위 내',
+    desc: '오픈 이후 메뉴·원가·운영을 점검하고 계약에 포함된 기간과 범위 안에서 지원합니다.',
+    deliverables: ['오픈 후 점검', '개선 제안'],
   },
 ]
 
-export const STEPS = [
-  { no: '01', en: 'CONSULT', title: '상담', desc: '창업 상황·예산·일정 및 필요 서비스 확인' },
-  { no: '02', en: 'PROPOSAL', title: '제안 및 계약', desc: '범위·결과물·일정·수정 조건 확정' },
-  { no: '03', en: 'BUILD', title: '기획 및 제작', desc: '메뉴·브랜드·디지털 작업 진행' },
-  { no: '04', en: 'REVIEW', title: '중간 검토', desc: '결과물 공유 및 약정된 수정 진행' },
-  { no: '05', en: 'DELIVER', title: '최종 납품', desc: '최종 파일·문서 전달 및 사용 안내' },
-  { no: '06', en: 'SUPPORT', title: '사후 지원', desc: '계약에 포함된 기간·범위 내 지원' },
+// 결과물 샘플 — 실제 고객 사례가 아닌, 납품 결과물의 구성 예시입니다.
+// 실제 프로젝트가 생기면 { kind, title, desc, includes, client, year } 형태로 추가하세요.
+export const WORKS = [
+  {
+    kind: 'menu',
+    cat: 'MENU · COURSE',
+    title: '코스 메뉴 구성',
+    desc: '콘셉트와 객단가에 맞춘 코스 흐름과 메뉴 구성',
+    includes: ['코스 순서 설계', '메뉴명·설명 문구', '시즌 교체안'],
+  },
+  {
+    kind: 'recipe',
+    cat: 'RECIPE',
+    title: '레시피 표준서',
+    desc: '누가 만들어도 같은 맛이 나도록 그램 단위까지 기록',
+    includes: ['재료·중량·공정', '플레이팅 기준', '보관·프렙 가이드'],
+  },
+  {
+    kind: 'cost',
+    cat: 'COST',
+    title: '원가 · 판매가 설계표',
+    desc: '메뉴별 원가율과 목표 마진을 기준으로 판매가 산정',
+    includes: ['메뉴별 원가율', '판매가 시뮬레이션', '손익 구조'],
+  },
+  {
+    kind: 'kitchen',
+    cat: 'KITCHEN',
+    title: '주방 동선 · 장비 구성',
+    desc: '좌석 수와 메뉴에 맞춘 조리 동선과 장비 배치',
+    includes: ['작업 구역 배치', '장비 리스트', '피크타임 동선'],
+  },
+  {
+    kind: 'brand',
+    cat: 'BRAND',
+    title: '브랜드 아이덴티티',
+    desc: '네이밍부터 로고, 컬러, 서체까지 한 방향으로',
+    includes: ['네이밍·로고', '컬러·서체 시스템', '브랜드 가이드'],
+  },
+  {
+    kind: 'web',
+    cat: 'DIGITAL',
+    title: '매장 홈페이지',
+    desc: '예약·문의 동선까지 이어지는 반응형 소개 홈페이지',
+    includes: ['반응형 웹사이트', '검색 등록', '예약 연결'],
+  },
+]
+
+// 무드 사진 — Unsplash 무료 라이선스(상업적 사용 가능). 실제 매장 사진이 생기면 교체하세요.
+export const photo = (id, w = 1600) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`
+
+export const HERO_SLIDES = [
+  { id: '1765646772493-7b5341714eea', cat: '공간 콘셉트', title: '조명 한 줄까지 설계하는 매장' },
+  { id: '1785413306000-4a6566aed0fb', cat: '메뉴 개발', title: '한 접시의 기준을 만드는 레시피' },
+  { id: '1700367059983-ee8a28689971', cat: '주방 운영', title: '카운터 뒤의 동선과 시스템' },
+  { id: '1711991022613-63df8929f311', cat: '원가 설계', title: '그램 단위로 맞추는 원가와 판매가' },
+]
+
+export const SERVICE_PHOTOS = ['1775513153018-0c7ac7899751', '1621871908119-295c8ce5cee4', '1636406261401-a64dfa3045bf']
+
+export const STORY_PHOTO = '1755811248299-7a6867dc163d'
+
+export const STATS = [
+  { value: '10', unit: '년', label: '셰프 현장 경력' },
+  { value: '6', unit: '단계', label: '체계적인 진행 코스' },
+  { value: '3', unit: '분야', label: '메뉴 · 브랜드 · 디지털 원스톱' },
+]
+
+export const FAQ = [
+  {
+    q: '상담은 어떻게 신청하나요?',
+    a: '인스타그램 @table_form으로 DM을 보내 주세요. 창업 단계, 업종, 희망 일정을 함께 적어 주시면 확인 후 상담 일정을 안내드립니다.',
+  },
+  {
+    q: '진행 기간은 얼마나 걸리나요?',
+    a: '범위에 따라 다릅니다. 창업 진단은 약 1주, 브랜드 작업은 약 2~3주, 메뉴·브랜드·홈페이지를 함께 진행하면 약 4~6주가 걸립니다. 정확한 일정은 상담 후 제안서로 확정합니다.',
+  },
+  {
+    q: '메뉴 개발이나 디자인만 따로 맡길 수 있나요?',
+    a: '가능합니다. 창업 진단, 메뉴 개발, 브랜드 디자인, 홈페이지 제작처럼 필요한 부분만 선택할 수 있습니다.',
+  },
+  {
+    q: '비용은 어떻게 정해지나요?',
+    a: '메뉴 수, 테스트 횟수, 디자인·홈페이지 범위 등을 상담에서 확인한 뒤 개별 견적으로 안내드립니다.',
+  },
+  {
+    q: '수정은 몇 번까지 가능한가요?',
+    a: '디자인 수정 횟수와 범위는 계약 전에 문서로 확정합니다. 범위를 넘는 추가 작업은 사전 견적 후 진행합니다.',
+  },
+  {
+    q: '어느 지역까지 진행하나요?',
+    a: '서울 · 경기 · 인천 지역을 중심으로 진행합니다. 그 외 지역은 출장 조건을 별도로 협의합니다.',
+  },
 ]

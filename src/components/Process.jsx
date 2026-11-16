@@ -1,44 +1,38 @@
-import { useRef } from 'react'
-import { motion, useInView, useScroll, useSpring } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { STEPS } from '../data.js'
-import { Reveal, SectionHead } from './Reveal.jsx'
+import { SectionHead, ease } from './Reveal.jsx'
 
+// 6단계 진행 과정 — 단계마다 기간과 결과물을 명시
 export default function Process() {
-  const ref = useRef(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 70%', 'end 60%'] })
-  const line = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
-
   return (
-    <section id="process" className="section process is-paper">
-      <SectionHead no="05" title="HOW WE WORK" sub="프로젝트 범위와 진행 과정은 상담 후 조정됩니다." />
-      <div className="process__timeline" ref={ref}>
-        <div className="process__rail">
-          <motion.span style={{ scaleY: line }} />
-        </div>
-        {STEPS.map((s) => (
-          <Step key={s.no} {...s} />
+    <section className="section process theme-paper">
+      <SectionHead en="PROCESS" sub="모든 프로젝트는 같은 6단계로, 단계마다 결과물을 문서로 확인하며 진행합니다." />
+      <ol className="process__grid">
+        {STEPS.map((s, i) => (
+          <motion.li
+            key={s.no}
+            className="step"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-8% 0px' }}
+            transition={{ duration: 0.8, delay: (i % 3) * 0.08, ease }}
+          >
+            <div className="step__top">
+              <span className="step__no">STEP {s.no}</span>
+              <span className="step__period">{s.period}</span>
+            </div>
+            <h3>{s.title}</h3>
+            <span className="step__en">{s.en}</span>
+            <p>{s.desc}</p>
+            <ul>
+              {s.deliverables.map((d) => (
+                <li key={d}>{d}</li>
+              ))}
+            </ul>
+          </motion.li>
         ))}
-      </div>
-      <Reveal className="process__note">
-        <span>DISCOVER</span> → <span>PLAN</span> → <span>BUILD</span> → <span>LAUNCH</span>
-      </Reveal>
+      </ol>
+      <p className="process__note">메뉴·브랜드·홈페이지 전체 진행 기준 약 4~6주 · 프로젝트 범위와 진행 과정은 상담 후 조정됩니다.</p>
     </section>
-  )
-}
-
-function Step({ no, en, title, desc }) {
-  const ref = useRef(null)
-  const active = useInView(ref, { margin: '-45% 0px -45% 0px' })
-  const passed = useInView(ref, { once: true, margin: '0px 0px -50% 0px' })
-  return (
-    <div ref={ref} className={`step ${passed ? 'is-passed' : ''} ${active ? 'is-active' : ''}`}>
-      <span className="step__node" />
-      <span className="step__no">STEP {no}</span>
-      <div className="step__body">
-        <span className="step__en">{en}</span>
-        <h3>{title}</h3>
-        <p>{desc}</p>
-      </div>
-    </div>
   )
 }

@@ -1,42 +1,39 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 
-export const ease = [0.22, 1, 0.36, 1]
+export const ease = [0.16, 1, 0.3, 1]
 
-export const maskUp = { hidden: { y: '105%' }, show: { y: '0%' } }
-
-export function Reveal({ children, delay = 0, y = 40, className, as = 'div' }) {
+export function Reveal({ children, delay = 0, y = 28, className, as = 'div', ...rest }) {
   const Tag = motion[as]
   return (
     <Tag
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-10% 0px' }}
+      viewport={{ once: true, margin: '-8% 0px' }}
       transition={{ duration: 0.9, delay, ease }}
+      {...rest}
     >
       {children}
     </Tag>
   )
 }
 
-export function SectionHead({ no, title, sub }) {
+// 섹션 머리: 넓은 자간의 영문 제목 + 한글 보조 문장. 한글 제목이 있으면 영문은 작은 라벨이 됩니다.
+export function SectionHead({ en, title, sub, align = 'center' }) {
   return (
-    <div className="section-head">
-      <Reveal className="section-head__no">
-        <span>{no}</span>
-        <i />
-      </Reveal>
-      <h2 className="section-head__title">
-        {/* 관찰 대상은 마스크(부모) — 마스크에 가려진 자식은 IntersectionObserver에 잡히지 않음 */}
-        <motion.span className="mask" initial="hidden" whileInView="show" viewport={{ once: true, margin: '-10% 0px' }}>
-          <motion.span variants={maskUp} transition={{ duration: 1, ease }}>
-            {title}
-          </motion.span>
-        </motion.span>
-      </h2>
+    <div className={`section-head is-${align} ${title ? 'has-title' : ''}`}>
+      {en && (
+        <Reveal as="span" className="section-head__en">
+          {en}
+        </Reveal>
+      )}
+      {title && (
+        <Reveal as="h2" className="section-head__title" delay={0.05}>
+          {title}
+        </Reveal>
+      )}
       {sub && (
-        <Reveal className="section-head__sub" delay={0.15}>
+        <Reveal as="p" className="section-head__sub" delay={0.1}>
           {sub}
         </Reveal>
       )}
@@ -44,28 +41,32 @@ export function SectionHead({ no, title, sub }) {
   )
 }
 
-// 스크롤에 따라 단어가 하나씩 밝아지는 텍스트
-export function ScrollText({ text, className, accent = [] }) {
-  const ref = useRef(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 85%', 'end 45%'] })
-  const words = text.split(' ')
+// 서브 페이지 상단 — 큰 영문 제목과 한 줄 소개
+export function PageHead({ en, kr, desc }) {
   return (
-    <p ref={ref} className={`scroll-text ${className ?? ''}`}>
-      {words.map((w, i) => (
-        <Word key={i} progress={scrollYProgress} range={[i / words.length, (i + 1) / words.length]} accent={accent.includes(i)}>
-          {w}
-        </Word>
-      ))}
-    </p>
+    <section className="page-head">
+      <Reveal as="span" className="page-head__kr">
+        {kr}
+      </Reveal>
+      <Reveal as="h1" className="page-head__en" delay={0.05}>
+        {en}
+      </Reveal>
+      {desc && (
+        <Reveal as="p" className="page-head__desc" delay={0.1}>
+          {desc}
+        </Reveal>
+      )}
+    </section>
   )
 }
 
-function Word({ children, progress, range, accent }) {
-  const opacity = useTransform(progress, range, [0.12, 1])
-  const y = useTransform(progress, range, [8, 0])
+// 모노그램 — 정사각 블록 안의 두 글자
+export function Seal({ size = 56, text = ['T', 'F'] }) {
   return (
-    <span className={`scroll-text__word ${accent ? 'is-accent' : ''}`}>
-      <motion.span style={{ opacity, y, display: 'inline-block' }}>{children}</motion.span>{' '}
+    <span className="seal" style={{ width: size, height: size }} aria-hidden="true">
+      {text.map((t) => (
+        <b key={t}>{t}</b>
+      ))}
     </span>
   )
 }

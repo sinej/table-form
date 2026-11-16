@@ -1,25 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
-import Loader from './components/Loader.jsx'
-import Cursor from './components/Cursor.jsx'
+import { routeMeta } from './routes.js'
 import Nav from './components/Nav.jsx'
-import Hero from './components/Hero.jsx'
-import Marquee from './components/Marquee.jsx'
-import Worries from './components/Worries.jsx'
-import Services from './components/Services.jsx'
-import Expertise from './components/Expertise.jsx'
-import Packages from './components/Packages.jsx'
-import Process from './components/Process.jsx'
-import Statement from './components/Statement.jsx'
-import Contact from './components/Contact.jsx'
+import Footer, { Floating } from './components/Footer.jsx'
+import Home from './pages/Home.jsx'
+import ServicePage from './pages/ServicePage.jsx'
+import PortfolioPage from './pages/PortfolioPage.jsx'
+import StoryPage from './pages/StoryPage.jsx'
+import ContactPage from './pages/ContactPage.jsx'
 
 export default function App() {
-  const [loaded, setLoaded] = useState(false)
+  const { pathname } = useLocation()
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const lenis = new Lenis({ duration: 1.15, smoothWheel: true })
+    const lenis = new Lenis({ duration: 1.1, smoothWheel: true })
     window.__lenis = lenis
     let id
     const raf = (t) => {
@@ -33,26 +30,28 @@ export default function App() {
     }
   }, [])
 
+  // 페이지 이동 시 맨 위로, 탭 제목 갱신
   useEffect(() => {
-    document.documentElement.style.overflow = loaded ? '' : 'hidden'
-  }, [loaded])
+    if (window.__lenis) window.__lenis.scrollTo(0, { immediate: true })
+    else window.scrollTo(0, 0)
+    document.title = routeMeta(pathname).title
+  }, [pathname])
 
   return (
     <>
-      <Loader onDone={() => setLoaded(true)} />
-      <Cursor />
       <Nav />
       <main>
-        <Hero ready={loaded} />
-        <Marquee />
-        <Worries />
-        <Services />
-        <Expertise />
-        <Packages />
-        <Process />
-        <Statement />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/service" element={<ServicePage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/story" element={<StoryPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
       </main>
+      <Footer />
+      <Floating />
     </>
   )
 }

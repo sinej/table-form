@@ -1,89 +1,65 @@
 import { useState } from 'react'
-import { motion, useMotionValueEvent, useScroll, AnimatePresence } from 'framer-motion'
+import { Link, NavLink, useLocation } from 'react-router-dom'
+import { motion, AnimatePresence, useMotionValueEvent, useScroll, useTransform } from 'framer-motion'
 import { INSTAGRAM } from '../data.js'
 import { InstagramIcon } from './Icons.jsx'
 
 const LINKS = [
-  ['about', 'About'],
-  ['services', 'Services'],
-  ['expertise', 'Expertise'],
-  ['packages', 'Packages'],
-  ['process', 'Process'],
-  ['contact', 'Contact'],
+  ['/service', '서비스 소개'],
+  ['/portfolio', '포트폴리오'],
+  ['/story', '스토리'],
 ]
 
-export function scrollToId(id) {
-  const el = document.getElementById(id)
-  if (!el) return
-  if (window.__lenis) window.__lenis.scrollTo(el, { offset: -20 })
-  else el.scrollIntoView({ behavior: 'smooth' })
-}
-
 export default function Nav() {
-  const { scrollY, scrollYProgress } = useScroll()
-  const [hidden, setHidden] = useState(false)
-  const [solid, setSolid] = useState(false)
   const [open, setOpen] = useState(false)
+  const close = () => setOpen(false)
+  const { pathname } = useLocation()
 
-  useMotionValueEvent(scrollY, 'change', (v) => {
-    const prev = scrollY.getPrevious() ?? 0
-    setHidden(v > prev && v > 400 && !open)
-    setSolid(v > 40)
-  })
+  // 맨 위에서는 배경 투명, 스크롤 0~160px 동안 서서히 나타남
+  const { scrollY } = useScroll()
+  const bgOpacity = useTransform(scrollY, [0, 160], [0, 1])
+  const [atTop, setAtTop] = useState(true)
+  useMotionValueEvent(scrollY, 'change', (v) => setAtTop(v < 80))
 
-  const go = (id) => {
-    setOpen(false)
-    scrollToId(id)
-  }
+  // 홈 히어로 사진 위에서는 글자를 흰색으로
+  const onPhoto = pathname === '/' && atTop && !open
 
   return (
     <>
-      <motion.header
-        className={`nav ${solid ? 'is-solid' : ''}`}
-        animate={{ y: hidden ? '-110%' : '0%' }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <button className="nav__logo" onClick={() => go('top')}>
-          TABLE<span className="colon">:</span>FORM
-        </button>
+      <header className={`nav ${onPhoto ? 'is-on-photo' : ''}`}>
+        <motion.div className="nav__bg" style={{ opacity: open ? 1 : bgOpacity }} aria-hidden="true" />
+        <Link className="nav__logo" to="/" onClick={close}>
+          TABLE:FORM
+        </Link>
         <nav className="nav__links">
-          {LINKS.map(([id, label]) => (
-            <button key={id} onClick={() => go(id)}>
-              <span data-text={label}>{label}</span>
-            </button>
+          {LINKS.map(([to, label]) => (
+            <NavLink key={to} to={to}>
+              {label}
+            </NavLink>
           ))}
         </nav>
-        <a className="nav__insta" href={INSTAGRAM.url} target="_blank" rel="noreferrer" data-cursor="DM">
-          <InstagramIcon />
-          <span>{INSTAGRAM.handle}</span>
-        </a>
+        <Link className="pill pill--dark nav__cta" to="/contact" onClick={close}>
+          상담 신청
+        </Link>
         <button className={`nav__burger ${open ? 'is-open' : ''}`} onClick={() => setOpen(!open)} aria-label="메뉴">
           <span />
           <span />
         </button>
-        <motion.div className="nav__progress" style={{ scaleX: scrollYProgress }} />
-      </motion.header>
+      </header>
 
       <AnimatePresence>
         {open && (
           <motion.div
             className="mobile-menu"
-            initial={{ clipPath: 'circle(0% at 100% 0%)' }}
-            animate={{ clipPath: 'circle(150% at 100% 0%)' }}
-            exit={{ clipPath: 'circle(0% at 100% 0%)' }}
-            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3 }}
           >
-            {LINKS.map(([id, label], i) => (
-              <motion.button
-                key={id}
-                onClick={() => go(id)}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 + i * 0.05 }}
-              >
-                <small>0{i + 1}</small>
+            {[...LINKS, ['/contact', '상담 신청']].map(([to, label]) => (
+              <NavLink key={to} to={to} onClick={close}>
                 {label}
-              </motion.button>
+              </NavLink>
             ))}
             <a href={INSTAGRAM.url} target="_blank" rel="noreferrer" className="mobile-menu__insta">
               <InstagramIcon /> {INSTAGRAM.handle}

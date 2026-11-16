@@ -1,0 +1,109 @@
+/* =========================================================
+   TABLE:FORM DESIGN SYSTEM — "MONO"
+   블랙 & 화이트만 사용합니다. 색 대신 크기·굵기·반전(흑백 뒤집기)으로 강조합니다.
+   Pretendard(한글) + Archivo Expanded(영문 제목), 넓은 여백과 사진 중심 레이아웃.
+   모든 컴포넌트는 이 토큰만 사용합니다. 자세한 규칙은 DESIGN.md 참고.
+   ========================================================= */
+:root {
+  /* ---- Palette ---- */
+  --light: #ffffff; /* 화이트 — 기본 바탕 */
+  --stone: #f2f2f2; /* 라이트 그레이 — 교차 섹션 */
+  --stone-2: #e4e4e4;
+  --dark: #0a0a0a; /* 블랙 — 다크 섹션 */
+  --dark-2: #161616;
+
+  /* ---- Semantic (섹션 테마에 따라 재정의) ---- */
+  --bg: var(--light);
+  --surface: var(--stone);
+  --text: #0a0a0a;
+  --text-soft: #2b2b2b;
+  --muted: #6b6b6b;
+  --dim: #b5b5b5;
+  --line: rgba(10, 10, 10, 0.1);
+  --line-strong: rgba(10, 10, 10, 0.22);
+  --accent: #0a0a0a; /* 강조 = 가장 진한 글자색. 색이 아니라 대비로 강조 */
+  --accent-rgb: 10, 10, 10;
+  --accent-2: var(--accent);
+  --on-accent: var(--light);
+
+  /* ---- Typography: 본문 Pretendard, 영문 제목은 넓은 Archivo Expanded ---- */
+  --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-en: 'Archivo', 'Pretendard Variable', sans-serif; /* font-stretch: 125% 로 사용 */
+
+  --t-display: clamp(34px, 4.6vw, 72px); /* 히어로 — weight 600, tracking -0.03em */
+  --t-h1: clamp(26px, 2.6vw, 40px); /* 섹션 영문 제목 — Archivo 125%, weight 600 */
+  --t-h2: clamp(24px, 2.6vw, 38px);
+  --t-h3: clamp(19px, 1.6vw, 23px);
+  --t-lead: clamp(16px, 1.25vw, 19px);
+  --t-body: 15px;
+  --t-small: 13px;
+  --t-label: 11px; /* 대문자 라벨 — Archivo, tracking 0.08em */
+
+  /* ---- Space (8pt) ---- */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 32px;
+  --s-5: 48px;
+  --s-6: 64px;
+  --s-7: 96px;
+  --s-8: 144px;
+  --gutter: clamp(16px, 4.5vw, 72px);
+  --section-y: clamp(96px, 12vw, 180px);
+  --max: 1400px;
+
+  /* ---- Line & shape ---- */
+  --hair: 1px solid var(--line);
+  --hair-strong: 1px solid var(--line-strong);
+  --radius: 999px; /* 버튼·칩 — 알약형 */
+  --radius-card: 0px; /* 사진·카드는 각지게 */
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.76, 0, 0.24, 1);
+  --dur-1: 0.3s;
+  --dur-2: 0.7s;
+  --dur-3: 1.2s;
+}
+
+/* 스톤 — 한 단계 짙은 밝은 섹션 */
+.theme-paper {
+  --bg: var(--stone);
+  --surface: var(--light);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* 다크 — 대비가 필요한 섹션 */
+.theme-dark {
+  --bg: var(--dark);
+  --surface: var(--dark-2);
+  --text: #ffffff;
+  --text-soft: #d4d4d4;
+  --muted: #8a8a8a;
+  --dim: #3d3d3d;
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.24);
+  --accent: #ffffff;
+  --accent-rgb: 255, 255, 255;
+  --on-accent: var(--dark);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* 밝은 카드 (다크 섹션 안의 메뉴판 등) */
+.theme-light {
+  --bg: var(--light);
+  --surface: var(--stone);
+  --text: #0a0a0a;
+  --text-soft: #2b2b2b;
+  --muted: #6b6b6b;
+  --dim: #b5b5b5;
+  --line: rgba(10, 10, 10, 0.1);
+  --line-strong: rgba(10, 10, 10, 0.22);
+  --accent: #0a0a0a;
+  --accent-rgb: 10, 10, 10;
+  --on-accent: var(--light);
+  background: var(--bg);
+  color: var(--text);
+}
