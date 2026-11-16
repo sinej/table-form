@@ -25,7 +25,7 @@ export const ROUTES = [
   {
     path: '/contact',
     title: '상담 신청 | TABLE:FORM 테이블폼',
-    description: '인스타그램 DM으로 외식업 창업 상담을 신청하세요. 서울·경기·인천 지역 진행.',
+    description: '인스타그램 DM·전화·이메일로 외식업 창업 상담을 신청하세요. 평일 09:00~18:00, 서울·경기·인천.',
   },
 ]
 

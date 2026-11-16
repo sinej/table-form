@@ -5,6 +5,13 @@ export const INSTAGRAM = {
 
 export const REGIONS = '서울 · 경기 · 인천'
 
+export const COMPANY = {
+  ceo: '신민상',
+  phone: '010-4231-1691',
+  email: 'tableform.consulting@gmail.com',
+  hours: '평일 09:00 ~ 18:00 (공휴일 제외)',
+}
+
 export const WORRIES = [
   '음식점 창업을 준비하는데 어디서부터 시작해야 할지 모르겠습니다.',
   '상가는 구했지만 메뉴와 주방 구성이 고민입니다.',
@@ -203,7 +210,7 @@ export const STATS = [
 export const FAQ = [
   {
     q: '상담은 어떻게 신청하나요?',
-    a: '인스타그램 @table_form으로 DM을 보내 주세요. 창업 단계, 업종, 희망 일정을 함께 적어 주시면 확인 후 상담 일정을 안내드립니다.',
+    a: '인스타그램 @table_form DM, 전화(010-4231-1691), 이메일(tableform.consulting@gmail.com) 중 편한 방법으로 연락 주세요. 창업 단계, 업종, 희망 일정을 함께 알려 주시면 확인 후 상담 일정을 안내드립니다. 상담 시간은 평일 09:00~18:00(공휴일 제외)입니다.',
   },
   {
     q: '진행 기간은 얼마나 걸리나요?',

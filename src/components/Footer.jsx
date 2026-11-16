@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { INSTAGRAM, REGIONS } from '../data.js'
+import { COMPANY, INSTAGRAM, REGIONS } from '../data.js'
 import { InstagramIcon } from './Icons.jsx'
 
 export default function Footer() {
@@ -29,13 +29,22 @@ export default function Footer() {
             <Link to="/contact">상담 신청</Link>
           </p>
           <h4>CONTACT</h4>
-          <p>
+          <p className="footer__contact">
+            <a href={`tel:${COMPANY.phone}`}>{COMPANY.phone}</a>
+            <br />
+            {COMPANY.hours}
+            <br />
+            <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+            <br />
             Instagram{' '}
             <a href={INSTAGRAM.url} target="_blank" rel="noreferrer">
               {INSTAGRAM.handle}
             </a>
-            <br />
-            {REGIONS}
+          </p>
+          <p className="footer__company">
+            <span>TABLE:FORM</span>
+            <span>대표 {COMPANY.ceo}</span>
+            <span>{REGIONS}</span>
           </p>
         </div>
       </div>

@@ -3,14 +3,14 @@ import { motion } from 'framer-motion'
 import { WORKS } from '../data.js'
 import { Reveal, SectionHead, Seal, ease } from './Reveal.jsx'
 
-// 포트폴리오 — 납품 결과물의 구성 예시. 실제 고객 사례가 아니므로 SAMPLE로 표시합니다.
+// 포트폴리오 — 납품 결과물의 구성 예시. 실제 고객 사례가 아니라는 안내 문구를 함께 둡니다.
 // head: 섹션 제목 표시, limit: 보여줄 개수, more: 포트폴리오 페이지로 가는 버튼 (홈용)
 export default function Works({ head = true, limit, more = false }) {
   return (
     <section className="section works">
       {head && <SectionHead en="PORTFOLIO" sub="말로 끝나는 컨설팅이 아니라, 매장에서 바로 쓰는 문서와 디자인으로 남깁니다." />}
       <Reveal as="p" className="works__note">
-        아래는 납품 결과물의 구성 예시(SAMPLE)입니다. 실제 프로젝트 사례는 순차적으로 공개됩니다.
+        아래는 납품 결과물의 구성 예시입니다. 실제 프로젝트 사례는 순차적으로 공개됩니다.
       </Reveal>
 
       <div className="works__grid">
@@ -24,7 +24,6 @@ export default function Works({ head = true, limit, more = false }) {
             transition={{ duration: 1.1, delay: (i % 3) * 0.1, ease }}
           >
             <div className="work__tray">
-              <span className="work__sample">SAMPLE</span>
               <Mock kind={w.kind} />
             </div>
             <div className="work__meta">
